@@ -1,7 +1,6 @@
 
-console.log("client.js -----> I am")
-
-const publicVapidKey = "BGdKZpLftO5LfmAIXGiYccQO9APYFJqMwn-42WgtATEBV7kuT2fUIyL8Ugv3oKbEZt21d7KTeUxog9dTqR9CKe4";
+const publicVapidKey="BKfPlTWGsnyEIxx1FygtT-fOq4IG6d4FdMyqFl2aduJqZ5BQa_YMs3PkIS9NMflBtRbdgTGm3iX575cvidG1VgU";
+const privateVapidKey="IJkrCjxCNmbelKQ9MFdCIQXGv-oThPZ16_-1wM-NSus"
 
 // Check for service worker support
 if ('serviceWorker' in navigator) {
@@ -14,7 +13,7 @@ if ('serviceWorker' in navigator) {
 async function registerServiceWorker() {
   try {
     console.log('Registering Service Worker...');
-    const registration = await navigator.serviceWorker.register('https://cdn.jsdelivr.net/gh/Shubham-moretask/push-notification-cdn/worker.js');
+    const registration = await navigator.serviceWorker.register('/worker.js');
     console.log('Service Worker Registered:', registration);
 
     // Register for push notifications
@@ -23,6 +22,13 @@ async function registerServiceWorker() {
     console.error('Service Worker registration failed:', error);
   }
 }
+
+
+
+
+
+
+
 
 async function registerPush(registration) {
   try {
@@ -43,7 +49,7 @@ async function registerPush(registration) {
 async function sendSubscriptionToServer(subscription) {
   try {
     console.log('Sending Push Subscription to Server...');
-    await fetch('https://pushnotification-ktxn.onrender.com/subscribe', {
+    await fetch('https://web-push-with-backend.onrender.com/subscribe', {
       method: 'POST',
       body: JSON.stringify(subscription),
       headers: {
